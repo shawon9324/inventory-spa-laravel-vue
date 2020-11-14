@@ -45,7 +45,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Action</h6>
                   <router-link to="/store-employee" class="collapse-item"><i class="fas fa-user-plus"></i> Add Employee</router-link>
-                  <router-link to="/" class="collapse-item"><i class="fas fa-users-cog"></i> All Employee</router-link>
+                  <router-link to="/employee" class="collapse-item"><i class="fas fa-users-cog"></i> All Employee</router-link>
                 </div>
               </div>
             </li>
