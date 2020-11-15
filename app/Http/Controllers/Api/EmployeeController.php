@@ -9,33 +9,11 @@ use Image;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $employee = Employee::all();
         return response()->json($employee);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validateData = $request->validate([
@@ -43,35 +21,34 @@ class EmployeeController extends Controller
             'gender'=> 'required ',
             'email'=>'required | unique:employees',
             'phone'=>'required ',
-            'nid'=>'required ',   
+            'nid'=>'required ', 
         ]);
-        if($request->hasFile('photo')){
-            $data = $request->all();
-            $position = strpos($request->photo,';');
-            $sub = substr($request->photo,0,$position);
-            $ext = explode('/',$sub)[1];
-            $image_name = rand(99,99999).".".$ext;
-            $img = Image::make($request->photo)->resize(300,300); 
-            $upload_path = 'backend/image/employee/';
-            $img_url = $upload_path.$image_name;                //TODO:Image Uploaded But Not Stored in the DB
-            $img->save($img_url);
-            $employee = new Employee;
-
-            $employee->name         =$data['name'];
-            $employee->email        =$data['email'];
-            $employee->phone        =$data['phone'];
-            $employee->salary       =$data['salary'];
-            $employee->address      =$data['address'];
-            $employee->nid          =$data['nid'];
-            $employee->joining_date =$data['joining_date'];
-            $employee->gender       =$data['gender'];    
-            $employee->photo        =$img_url;
+        $data = $request->all();
+        $employee = new Employee;
+        if($request->photo){
+            $exploded = explode(',',$request->photo);
+            $decoded = base64_decode($exploded[1]);
+            if(str_contains($exploded[0],'jpg') || str_contains($exploded[0],'jpeg')  ){
+                $ext = 'jpg';
+            }
+            else if(str_contains($exploded[0],'png')){
+                $ext = 'png';
+            }
+            $image_name = rand(99,99999).'-employee'.'.'.$ext;
+            $image_url = 'backend/image/employee/'.$image_name;
+            // file_put_contents($image_url,$decoded);
+            Image::make($decoded)->resize(300, 300)->save($image_url);
+            $employee->name         = $data['name'];
+            $employee->email        = $data['email'];
+            $employee->phone        = $data['phone'];
+            $employee->salary       = $data['salary'];
+            $employee->address      = $data['address'];
+            $employee->nid          = $data['nid'];
+            $employee->joining_date = $data['joining_date'];
+            $employee->gender       = $data['gender'];    
+            $employee->photo        = $image_url;
             $employee->save();
         }else{
-            $data = $request->all();
-
-            $employee = new Employee;
-
             $employee->name         =$data['name'];
             $employee->email        =$data['email'];
             $employee->phone        =$data['phone'];
@@ -83,49 +60,76 @@ class EmployeeController extends Controller
             $employee->save();
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $employee = Employee::find($id);
+        return response()->json($employee);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $validateData = $request->validate([
+            'name' => 'required',
+            'gender'=> 'required ',
+            'phone'=>'required ',
+            'nid'=>'required ',  
+        ]);
+        $employee = array();
+        $employee['name'] = $request->name;
+        $employee['email'] = $request->email;
+        $employee['phone'] = $request->phone;
+        $employee['salary'] = $request->salary;
+        $employee['address'] = $request->address;
+        $employee['nid'] = $request->nid;
+        $employee['joining_date'] = $request->joining_date;
+        $employee['gender'] = $request->gender;
+        $image = $request->new_photo;
+        if($image)
+        {
+            $exploded = explode(',',$image);
+            $decoded = base64_decode($exploded[1]);
+            if(str_contains($exploded[0],'jpg') || str_contains($exploded[0],'jpeg')  ){
+                $ext = 'jpg';
+            }
+            else if(str_contains($exploded[0],'png')){
+                $ext = 'png';
+            }
+            $image_name = rand(99,99999).'-employee'.'.'.$ext;
+            $image_url = 'backend/image/employee/'.$image_name;
+            $success = Image::make($decoded)->resize(300,300)->save($image_url);
+            if($success){
+                $employee['photo'] = $image_url;
+                $empolyee_info = Employee::find($id);
+                if(!empty($empolyee_info->photo)){
+                    unlink($empolyee_info->photo);
+                }else{
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+                }
+                $empolyee_info->update($employee);
+            }
+        }
+        else
+        {
+            $old_photo = $request->photo;
+            $employee['photo'] = $old_photo;
+            Employee::find($id)->update($employee);
+        }
+
+
+    }
     public function destroy($id)
     {
-        //
+        $employee = Employee::find($id);
+        $photo = $employee['photo'];
+        if($photo){
+            unlink($photo);
+            $employee->delete();
+        }else{
+            $employee->delete();
+        }
+       
     }
 }

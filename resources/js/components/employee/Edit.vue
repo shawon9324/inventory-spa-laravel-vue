@@ -4,20 +4,21 @@
             <h1 class="h3 mb-0 text-gray-800">Employee</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><router-link to="/home">Home</router-link></li>
-              <li class="breadcrumb-item active" aria-current="page">Add Employee</li>
+              <li class="breadcrumb-item active" aria-current="page">Edit Employee Info</li>
             </ol>
           </div>
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card shadow-sm">
           <div class="card-header text-center h4 text-gray-900">
-            <i class="fas fa-user-plus"></i>  Add Employee
-            <router-link to="/employee" class="btn btn-info" style="float:right"><i class="far fa-eye"></i></router-link>
+            <i class="fas fa-user-edit"></i>  Edit Employee Info &nbsp;&nbsp;&nbsp;&nbsp;
+            <router-link to="/employee" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></router-link>
+            <button @click="refresh()" class="btn btn-info" style="float:right"><i class="fas fa-redo-alt"></i></button>
           </div>
           <div class="card-body p-0">
             <div class="row">
               <div class="col-lg-12">
                 <div class="login-form">
-                    <form class="employee" @submit.prevent="storeEmployee" enctype="multipart/form-data">
+                    <form id="edit-employee" class="employee" @submit.prevent="updateEmployee" enctype="multipart/form-data">
                               <div class="form-row">
                                 <div class="form-group col-md-6">
                                   <input type="text" class="form-control" id="name"  placeholder="Employee Name" v-model="form.name">
@@ -92,7 +93,7 @@
                                 </div>
                               </div>
                             <div class="form-group">
-                              <button type="submit" id="submit" class="btn btn-info btn-block">Submit</button>
+                              <button type="submit" id="update" class="btn btn-info btn-block">Update</button>
                             </div>
                     </form>
                 </div>
@@ -116,19 +117,26 @@
     data(){
         return{
             form:{
-                name:null,
-                email:null,
-                phone:null,
-                salary:null,
-                address:null,
-                photo:null,
-                nid:null,
-                joining_date:null,
-                gender:null
+                name:'',
+                email:'',
+                phone:'',
+                salary:'',
+                address:'',
+                photo:'',
+                new_photo:'',
+                nid:'',
+                joining_date:'',
+                gender:''
             },
             errors:{ },
 
         }
+    },
+    created() {
+      let id = this.$route.params.id
+      axios.get('/api/employee/'+id)
+      .then(({data}) =>(this.form = data))
+      .catch(console.log('error'))
     },
     methods:{
         onFileSelected(event){
@@ -140,19 +148,23 @@
             
             let reader = new FileReader();
             reader.onload = event => {
-              this.form.photo = event.target.result
+              this.form.new_photo = event.target.result
               console.log(event.target.result)
             };
             reader.readAsDataURL(file)
           }
         },
-        storeEmployee(){
-          axios.post('/api/employee',this.form)
+        updateEmployee(){
+          let id = this.$route.params.id
+          axios.patch('/api/employee/'+id,this.form)
           .then(res => {
-            Notification.success("Employee added successfully!")
+            Notification.success("Employee updated successfully!")
             this.$router.push({name:'employee'})
           })
           .catch(error => (this.errors = error.response.data.errors))
+        },
+        refresh(){
+            document.getElementById("edit-employee").reset();
         }
     },
 
