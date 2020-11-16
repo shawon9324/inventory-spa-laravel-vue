@@ -5,9 +5,17 @@ let Forget = require('./components/auth/Forget.vue').default;
 let Logout = require('./components/auth/Logout.vue').default;
 
 //EMPLOYEE
-let Create = require('./components/employee/Create.vue').default;
+let store_employee = require('./components/employee/Create.vue').default;
 let employee = require('./components/employee/Index.vue').default;
-let editEmployee = require('./components/employee/Edit.vue').default;
+let edit_employee = require('./components/employee/Edit.vue').default;
+//SUPPLIER
+let store_supplier = require('./components/supplier/Create.vue').default;
+let supplier = require('./components/supplier/Index.vue').default;
+let edit_supplier = require('./components/supplier/Edit.vue').default;
+//Category
+let store_category = require('./components/category/Create.vue').default;
+let category = require('./components/category/Index.vue').default;
+let edit_category = require('./components/category/Edit.vue').default;
 //home
 let Home = require('./components/Home.vue').default;
 
@@ -19,7 +27,15 @@ export const routes = [
     { path: '/home', component: Home , name: 'home' },
     { path: '/logout', component: Logout , name: 'logout' },
     //EMPLOYEE
-    { path: '/store-employee', component: Create , name: 'store-employee' },
+    { path: '/store-employee', component: store_employee , name: 'store-employee' },
     { path: '/employee', component: employee , name: 'employee' },
-    { path: '/edit-employee/:id', component: editEmployee , name: 'edit-employee' },
+    { path: '/edit-employee/:id', component: edit_employee , name: 'edit-employee' },
+    //SUPPLIER
+    { path: '/store-supplier', component: store_supplier , name: 'store-supplier' },
+    { path: '/supplier', component: supplier , name: 'supplier' },
+    { path: '/edit-supplier/:id', component: edit_supplier , name: 'edit-supplier' },
+    //Category
+    { path: '/store-category', component: store_category , name: 'store-category' },
+    { path: '/category', component: category , name: 'category' },
+    { path: '/edit-category/:id', component: edit_category , name: 'edit-category' },
   ]

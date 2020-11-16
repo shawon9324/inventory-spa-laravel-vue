@@ -45,7 +45,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Action</h6>
                   <router-link to="/store-employee" class="collapse-item"><i class="fas fa-user-plus"></i> Add Employee</router-link>
-                  <router-link to="/employee" class="collapse-item"><i class="fas fa-users-cog"></i> All Employee</router-link>
+                  <router-link to="/employee" class="collapse-item"><i class="fas fa-users"></i> All Employee</router-link>
                 </div>
               </div>
             </li>
@@ -58,8 +58,22 @@
               <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Action</h6>
-                  <router-link to="/" class="collapse-item" href="alerts.html"><i class="fas fa-user-plus"></i> Add Supplier</router-link>
-                  <router-link to="/" class="collapse-item" href="buttons.html"><i class="fas fa-users-cog"></i> All Supplier</router-link>
+                  <router-link to="/store-supplier" class="collapse-item" ><i class="fas fa-user-plus"></i> Add Supplier</router-link>
+                  <router-link to="/supplier" class="collapse-item" ><i class="fas fa-users"></i> All Supplier</router-link>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#category" aria-expanded="true"
+                aria-controls="collapseForm">
+                <i class="fas fa-tags"></i>
+                <span>Category</span>
+              </a>
+              <div id="category" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Action</h6>
+                  <router-link to="/store-category" class="collapse-item" ><i class="fas fa-plus-square"></i> Add Category</router-link>
+                  <router-link to="/category" class="collapse-item" ><i class="fas fa-tags"></i> All Category</router-link>
                 </div>
               </div>
             </li>

@@ -1,18 +1,18 @@
 <template>
   <div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Employee</h1>
+            <h1 class="h3 mb-0 text-gray-800">Category</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><router-link to="/home">Home</router-link></li>
-              <li class="breadcrumb-item active" aria-current="page">All Employee</li>
+              <li class="breadcrumb-item active" aria-current="page">All Category</li>
             </ol>
           </div>
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card shadow-sm">
           <div class="card-header text-center h4 text-gray-900" >
             <input type="text" v-model="searchData" class="form-control-sm"  placeholder="Search here" style="float:left; color:gray;border:1px solid #a9a9a9 ;">
-            <i class="fas fa-users"></i> All Employee &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link to="/store-employee" class="btn btn-info" style="float:right"><i class="fas fa-user-plus"></i></router-link>
+            <i class="fas fa-list"></i> All Category &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <router-link to="/store-category" class="btn btn-info" style="float:right"><i class="fas fa-plus-circle"></i></router-link>
           </div>
           <div class="card-body p-0">
             <div class="row">
@@ -22,29 +22,20 @@
                     <thead class="thead-light">
                       <tr>
                         <th>No</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Salary</th>
-                        <th>Joining Date</th>
-                        <th>Photo</th>
+                        <th>Category Name</th>
+                        <th>Details</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="employee in filterSearch" :key="employee.id">
-                        <td>{{ employee.length}}</td>
-                        <td>{{ employee.name }}</td>
-                        <td>{{ employee.phone }}</td>
-                        <td>{{ employee.salary }}</td>
-                        <td>{{ employee.joining_date }}</td>
-                        <td><img :src="employee.photo" id="employee-photo"></td>
+                      <tr v-for="category in filterSearch" :key="category.id">
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.category_name }}</td>
+                        <td>{{ category.details }}</td>
                         <td>
-                            <router-link :to="{name:'edit-employee',params:{id:employee.id}}" ><button href="#" class="btn btn-success"><i class="fas fa-user-edit"></i></button></router-link>
-                            <button @click="deleteEmployee(employee.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                            <router-link :to="{name:'edit-category',params:{id:category.id}}" ><button href="#" class="btn btn-success"><i class="fas fa-edit"></i></button></router-link>
+                            <button @click="deleteCategory(category.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                         </td>
-                        <!-- <td>Nasi Padang</td> -->
-                        <!-- <td><span class="badge badge-success">Delivered</span></td> -->
-                        <!-- <td><a href="#" class="btn btn-sm btn-primary">Action</a></td> -->
                       </tr>
                     </tbody>
                   </table>
@@ -68,25 +59,24 @@
     },
     data(){
         return{
-            i:1,
-            employees:[],
+            categories:[],
             searchData:''
         }
     },
     computed:{
       filterSearch(){
-        return this.employees.filter(employee =>{
-          return (employee.phone.match(this.searchData) || employee.name.match(this.searchData))
+        return this.categories.filter(category =>{
+          return (category.category_name.match(this.searchData) || category.details.match(this.searchData) )
         })
       }
     },
     methods:{
-        allEmployee(){
-          axios.get('/api/employee/')
-          .then(({data}) => (this.employees = data))
+        allCategory(){
+          axios.get('/api/category/')
+          .then(({data}) => (this.categories = data))
           .catch()
         },
-        deleteEmployee(id){
+        deleteCategory(id){
           Swal.fire({
               title: "Are you sure?",
               text: "You won't be able to revert this!",
@@ -96,27 +86,28 @@
               cancelButtonColor: "#d33",
               confirmButtonText: "Yes, delete it!",
             }).then((result) => {
-              axios.delete('/api/employee/'+id)
+              axios.delete('/api/category/'+id)
               .then(() =>{
-                this.employees = this.employees.filter(employee =>{
-                  return employee.id != id
+                this.categories = this.categories.filter(category =>{
+                  return category.id != id
                 })
               })
               .catch(()=>{
-                this.$router.push({name:'employee'})
+                this.$router.push({name:'category'})
               })
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
           });
       },
     },
     created(){
-          this.allEmployee();
-     }
+          this.allCategory();
+    }
 
+    
   };
 </script>
 <style>
-#employee-photo{
+#category-photo{
   height: 60px;
   width: 60px;
 }

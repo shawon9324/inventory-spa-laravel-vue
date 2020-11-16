@@ -65,10 +65,6 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         return response()->json($employee);
     }
-    public function edit($id)
-    {
-        //
-    }
     public function update(Request $request, $id)
     {
         $validateData = $request->validate([
@@ -102,13 +98,13 @@ class EmployeeController extends Controller
             $success = Image::make($decoded)->resize(300,300)->save($image_url);
             if($success){
                 $employee['photo'] = $image_url;
-                $empolyee_info = Employee::find($id);
-                if(!empty($empolyee_info->photo)){
-                    unlink($empolyee_info->photo);
+                $employee_info = Employee::find($id);
+                if(!empty($employee_info->photo)){
+                    unlink($employee_info->photo);
                 }else{
 
                 }
-                $empolyee_info->update($employee);
+                $employee_info->update($employee);
             }
         }
         else
