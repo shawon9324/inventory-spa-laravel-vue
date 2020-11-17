@@ -33,7 +33,7 @@ class SupplierController extends Controller
             else if(str_contains($exploded[0],'png')){
                 $ext = 'png';
             }
-            $image_name = rand(99,99999).'-employee'.'.'.$ext;
+            $image_name = rand(99,99999).'-supplier'.'.'.$ext;
             $image_url = 'backend/image/supplier/'.$image_name;
             // file_put_contents($image_url,$decoded);
             Image::make($decoded)->resize(300, 300)->save($image_url);

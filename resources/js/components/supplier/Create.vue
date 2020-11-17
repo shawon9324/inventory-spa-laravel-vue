@@ -41,7 +41,6 @@
                               <div class="form-row">
                                 <div class="form-group col-md-6">
                                    <select class="form-control mb-3" v-model="form.gender">
-                                      <option disabled value="">Select Gender</option>
                                       <option>Male</option>
                                       <option>Female</option>
                                       <option>Other</option>

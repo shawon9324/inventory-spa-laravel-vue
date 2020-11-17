@@ -39,7 +39,7 @@
             <li class="nav-item">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
                 aria-expanded="true" aria-controls="collapseBootstrap">
-                <i class="fas fa-users"></i> <span>Employee</span>
+                <i class="fas fa-users"></i><span>Employee</span>
               </a>
               <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
@@ -52,28 +52,39 @@
             <li class="nav-item">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
                 aria-controls="collapseForm">
-                <i class="fas fa-user-tie"></i>
-                <span>Supplier</span>
+                <i class="fas fa-user-tie"></i><span> Supplier</span>
               </a>
               <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Action</h6>
-                  <router-link to="/store-supplier" class="collapse-item" ><i class="fas fa-user-plus"></i> Add Supplier</router-link>
-                  <router-link to="/supplier" class="collapse-item" ><i class="fas fa-users"></i> All Supplier</router-link>
+                  <router-link to="/store-supplier" class="collapse-item"><i class="fas fa-user-plus"></i> Add Supplier</router-link>
+                  <router-link to="/supplier" class="collapse-item"><i class="fas fa-users"></i> All Supplier</router-link>
                 </div>
               </div>
             </li>
             <li class="nav-item">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#category" aria-expanded="true"
                 aria-controls="collapseForm">
-                <i class="fas fa-tags"></i>
-                <span>Category</span>
+                <i class="fas fa-tags"></i><span>Category</span>
               </a>
               <div id="category" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Action</h6>
                   <router-link to="/store-category" class="collapse-item" ><i class="fas fa-plus-square"></i> Add Category</router-link>
                   <router-link to="/category" class="collapse-item" ><i class="fas fa-tags"></i> All Category</router-link>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#product" aria-expanded="true"
+                aria-controls="collapseForm">
+                <i class="fas fa-gifts"></i><span>Product</span>
+              </a>
+              <div id="product" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Action</h6>
+                  <router-link to="/store-product" class="collapse-item" ><i class="fas fa-plus-square"></i> Add Product</router-link>
+                  <router-link to="/product" class="collapse-item" ><i class="fas fa-box-open"></i> All Product</router-link>
                 </div>
               </div>
             </li>

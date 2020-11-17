@@ -107,6 +107,8 @@
       let id = this.$route.params.id
       axios.get('/api/supplier/'+id)
       .then(({data}) =>(this.form = data))
+
+      
     },
     methods:{
         onFileSelected(event){

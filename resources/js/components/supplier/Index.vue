@@ -93,6 +93,7 @@
               cancelButtonColor: "#d33",
               confirmButtonText: "Yes, delete it!",
             }).then((result) => {
+              if (result.isConfirmed) {
               axios.delete('/api/supplier/'+id)
               .then(() =>{
                 this.suppliers = this.suppliers.filter(supplier =>{
@@ -103,6 +104,7 @@
                 this.$router.push({name:'supplier'})
               })
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              }
           });
       },
     },

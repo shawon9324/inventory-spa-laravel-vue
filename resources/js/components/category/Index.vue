@@ -86,6 +86,7 @@
               cancelButtonColor: "#d33",
               confirmButtonText: "Yes, delete it!",
             }).then((result) => {
+              if (result.isConfirmed) {
               axios.delete('/api/category/'+id)
               .then(() =>{
                 this.categories = this.categories.filter(category =>{
@@ -96,6 +97,7 @@
                 this.$router.push({name:'category'})
               })
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              }
           });
       },
     },
