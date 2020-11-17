@@ -89,6 +89,32 @@
               </div>
             </li>
             <li class="nav-item">
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#expense" aria-expanded="true"
+                aria-controls="collapseForm">
+                <i class="fas fa-hand-holding-usd"></i><span>Expense</span>
+              </a>
+              <div id="expense" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Action</h6>
+                  <router-link to="/store-expense" class="collapse-item" ><i class="fas fa-dollar-sign"></i> Add Expense</router-link>
+                  <router-link to="/expense" class="collapse-item" ><i class="fas fa-comment-dollar"></i> All Expense</router-link>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#salary" aria-expanded="true"
+                aria-controls="collapseForm">
+                <i class="far fa-money-bill-alt"></i><span>Salary</span>
+              </a>
+              <div id="salary" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Action</h6>
+                  <router-link to="/given-salary" class="collapse-item" ><i class="fas fa-hand-holding-usd"></i> Pay Salary</router-link>
+                  <router-link to="/salary" class="collapse-item" ><i class="fas fa-money-bill-alt"></i> All Salary</router-link>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="ui-colors.html">
                 <i class="fas fa-fw fa-palette"></i>
                 <span>Settings</span>
@@ -319,9 +345,19 @@
                 <!-- route outlet -->
                 <!-- component matched by the route will render here -->
                 <router-view></router-view>
+                
             </div>
             <!---Container Fluid-->
           </div>
+          <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                <span>Copyright © 2020 -  Developed by
+                  <b><a href="https://shawon9324.github.io/" target="_blank">shawon9324</a></b>
+                </span>
+              </div>
+            </div>
+          </footer>
         </div>
     </div> 
 

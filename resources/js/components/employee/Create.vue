@@ -41,10 +41,10 @@
                               <div class="form-row">
                                 <div class="form-group col-md-6">
                                    <select class="form-control" id="exampleFormControlSelect1" v-model="form.gender">
-                                      <option>Select Gender</option>
-                                      <option>Male</option>
-                                      <option>Female</option>
-                                      <option>Other</option>
+                                      <option disabled>Select Gender</option>
+                                      <option value="Male">Male</option>
+                                      <option value="Female">Female</option>
+                                      <option value="Other">Other</option>
                                       </select>
                                   <small class="text-danger" v-if="errors.gender">{{ errors.gender[0] }}</small>
                                 </div> 

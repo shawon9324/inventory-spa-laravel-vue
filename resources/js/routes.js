@@ -20,6 +20,16 @@ let edit_category = require('./components/category/Edit.vue').default;
 let store_product = require('./components/product/Create.vue').default;
 let product = require('./components/product/Index.vue').default;
 let edit_product = require('./components/product/Edit.vue').default;
+//Product
+let store_expense = require('./components/expense/Create.vue').default;
+let expense = require('./components/expense/Index.vue').default;
+let edit_expense = require('./components/expense/Edit.vue').default;
+//Salary
+let given_salary = require('./components/salary/AllEmployee.vue').default;
+let pay_salary = require('./components/salary/Create.vue').default;
+let all_salary = require('./components/salary/Index.vue').default;
+let view_salary = require('./components/salary/View.vue').default;
+let update_salary = require('./components/salary/Edit.vue').default;
 //home
 let Home = require('./components/Home.vue').default;
 
@@ -46,4 +56,14 @@ export const routes = [
     { path: '/store-product', component: store_product , name: 'store-product' },
     { path: '/product', component: product , name: 'product' },
     { path: '/edit-product/:id', component: edit_product , name: 'edit-product' },
+    //Expense
+    { path: '/store-expense', component: store_expense , name: 'store-expense' },
+    { path: '/expense', component: expense , name: 'expense' },
+    { path: '/edit-expense/:id', component: edit_expense , name: 'edit-expense' },
+    //Salary
+    { path: '/given-salary', component: given_salary , name: 'given-salary' },
+    { path: '/pay-salary/:id', component: pay_salary , name: 'pay-salary' },
+    { path: '/salary', component: all_salary , name: 'salary' },
+    { path: '/view-salary/:id', component: view_salary , name: 'view-salary' },
+    { path: '/update-salary/:id', component: update_salary , name: 'update-salary' },
   ]

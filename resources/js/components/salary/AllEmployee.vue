@@ -25,7 +25,6 @@
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Salary</th>
-                        <th>Joining Date</th>
                         <th>Photo</th>
                         <th>Action</th>
                       </tr>
@@ -36,13 +35,10 @@
                         <td>{{ employee.name }}</td>
                         <td>{{ employee.phone }}</td>
                         <td>{{ employee.salary }}</td>
-                        <td>{{ employee.joining_date }}</td>
                         <td><img :src="employee.photo" id="employee-photo"></td>
                         <td>
-                            <router-link :to="{name:'edit-employee',params:{id:employee.id}}" ><button href="#" class="btn btn-success"><i class="fas fa-user-edit"></i></button></router-link>
-                            <button @click="deleteEmployee(employee.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                            <router-link :to="{name:'pay-salary',params:{id:employee.id}}" ><button href="#" class="btn btn-light">Pay Salary</button></router-link>
                         </td>
-                        <!-- <td>Nasi Padang</td> -->
                         <!-- <td><span class="badge badge-success">Delivered</span></td> -->
                         <!-- <td><a href="#" class="btn btn-sm btn-primary">Action</a></td> -->
                       </tr>
@@ -85,35 +81,11 @@
           .then(({data}) => (this.employees = data))
           .catch()
         },
-        deleteEmployee(id){
-          Swal.fire({
-              title: "Are you sure?",
-              text: "You won't be able to revert this!",
-              icon: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#3085d6",
-              cancelButtonColor: "#d33",
-              confirmButtonText: "Yes, delete it!",
-            }).then((result) => {
-              if (result.isConfirmed) {
-              axios.delete('/api/employee/'+id)
-              .then(() =>{
-                this.employees = this.employees.filter(employee =>{
-                  return employee.id != id
-                })
-              })
-              .catch(()=>{
-                this.$router.push({name:'employee'})
-              })
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              }
-          });
-      },
-    },
-    created(){
-          this.allEmployee();
-     }
-
+     },
+     created(){
+            this.allEmployee();
+      }
+     
   };
 </script>
 <style>
