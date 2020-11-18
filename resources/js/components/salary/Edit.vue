@@ -11,7 +11,7 @@
         <div class="card shadow-sm">
           <div class="card-header text-center h4 text-gray-900">
             <i class="fas fa-hand-holding-usd"></i>  Update Salary Info&nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link to="/employee" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></router-link>
+            <router-link to="/salary" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></router-link>
           </div>
           <div class="card-body p-0">
             <div class="row">
@@ -109,9 +109,9 @@
     methods:{
         updateSalary(){
           let id = this.$route.params.id
-          axios.post('/api/salary/paid/'+id,this.form)
+          axios.post('/api/salary/update/'+id,this.form)
           .then(res => {
-            this.$router.push({name:'given-salary'})
+            this.$router.push({name:'salary'})
             Notification.success("Salary Info updated successfully!")
           })
           .catch(error => (this.errors = error.response.data.errors))

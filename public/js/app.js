@@ -4482,11 +4482,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     var id = this.$route.params.id;
     axios.post('/api/salary/paid/' + id, this.form).then(function (res) {
-      _this2.$router.push({
-        name: 'given-salary'
-      });
+      if (res.data == "payment_already_exist") {
+        Notification.error("Salary already paid for this month!");
+      } else {
+        _this2.$router.push({
+          name: 'given-salary'
+        });
 
-      Notification.success("Salary payment successfully!");
+        Notification.success("Salary payment successfully!");
+      }
     })["catch"](function (error) {
       return _this2.errors = error.response.data.errors;
     });
@@ -4621,9 +4625,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this2 = this;
 
     var id = this.$route.params.id;
-    axios.post('/api/salary/paid/' + id, this.form).then(function (res) {
+    axios.post('/api/salary/update/' + id, this.form).then(function (res) {
       _this2.$router.push({
-        name: 'given-salary'
+        name: 'salary'
       });
 
       Notification.success("Salary Info updated successfully!");
@@ -4646,6 +4650,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -54185,9 +54212,7 @@ var render = function() {
         staticClass: "d-sm-flex align-items-center justify-content-between mb-4"
       },
       [
-        _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
-          _vm._v("Employee")
-        ]),
+        _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [_vm._v("Salary")]),
         _vm._v(" "),
         _c("ol", { staticClass: "breadcrumb" }, [
           _c(
@@ -54203,7 +54228,7 @@ var render = function() {
               staticClass: "breadcrumb-item active",
               attrs: { "aria-current": "page" }
             },
-            [_vm._v("All Employee")]
+            [_vm._v("Pay Salary")]
           )
         ])
       ]
@@ -54253,9 +54278,9 @@ var render = function() {
               {
                 staticClass: "btn btn-info",
                 staticStyle: { float: "right" },
-                attrs: { to: "/store-employee" }
+                attrs: { to: "/salary" }
               },
-              [_c("i", { staticClass: "fas fa-user-plus" })]
+              [_c("i", { staticClass: "fas fa-file-invoice-dollar" })]
             )
           ],
           1
@@ -54418,7 +54443,7 @@ var render = function() {
               {
                 staticClass: "btn btn-info",
                 staticStyle: { float: "left" },
-                attrs: { to: "/employee" }
+                attrs: { to: "/given-salary" }
               },
               [_c("i", { staticClass: "fas fa-arrow-alt-circle-left" })]
             )
@@ -54765,7 +54790,7 @@ var render = function() {
               {
                 staticClass: "btn btn-info",
                 staticStyle: { float: "left" },
-                attrs: { to: "/employee" }
+                attrs: { to: "/salary" }
               },
               [_c("i", { staticClass: "fas fa-arrow-alt-circle-left" })]
             )
@@ -55099,126 +55124,88 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "col-xl-12 col-lg-12 col-md-12" }, [
-      _c("div", { staticClass: "card shadow-sm" }, [
+    _c(
+      "div",
+      { staticClass: "card-header text-center h4 text-gray-900" },
+      [
+        _c("i", { staticClass: "fas fa-money-check-alt" }),
+        _vm._v(
+          " All Salary Information                            \n            "
+        ),
         _c(
+          "router-link",
+          {
+            staticClass: "btn btn-info",
+            staticStyle: { float: "right" },
+            attrs: { to: "/given-salary" }
+          },
+          [_c("i", { staticClass: "fas fa-hand-holding-usd" })]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row mb-3 p-2" },
+      _vm._l(_vm.filterSearch, function(salary) {
+        return _c(
           "div",
-          { staticClass: "card-header text-center h4 text-gray-900" },
+          { key: salary.id, staticClass: "col-xl-3 col-md-6 mb-4" },
           [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.searchData,
-                  expression: "searchData"
-                }
-              ],
-              staticClass: "form-control-sm",
-              staticStyle: {
-                float: "left",
-                color: "gray",
-                border: "1px solid #a9a9a9"
-              },
-              attrs: { type: "text", placeholder: "Search here" },
-              domProps: { value: _vm.searchData },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.searchData = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("i", { staticClass: "fas fa-user" }),
-            _vm._v(
-              "All Salary Information                            \n            "
-            ),
             _c(
               "router-link",
               {
-                staticClass: "btn btn-info",
-                staticStyle: { float: "right" },
-                attrs: { to: "/given-salary" }
+                attrs: {
+                  to: {
+                    name: "view-salary",
+                    params: { id: salary.salary_month }
+                  }
+                }
               },
-              [_c("i", { staticClass: "fas fa-user-plus" })]
+              [
+                _c("div", { staticClass: "card h-100" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "row align-items-center" }, [
+                      _c("div", { staticClass: "col mr-2" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "h5 mb-0 font-weight-bold text-gray-800 text-center"
+                          },
+                          [_vm._v(_vm._s(salary.salary_month))]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "mt-2 mb-0 text-muted text-xs text-center"
+                          },
+                          [
+                            _c(
+                              "span",
+                              { staticClass: "text-success mr-2 text-center" },
+                              [_vm._v("Session: 2020")]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ]
             )
           ],
           1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body p-0" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-12" }, [
-              _c("div", { staticClass: "table-responsive" }, [
-                _c(
-                  "table",
-                  { staticClass: "table align-items-center table-flush" },
-                  [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.filterSearch, function(salary) {
-                        return _c("tr", { key: salary.id }, [
-                          _c("td", [_vm._v(_vm._s(salary.salary_month))]),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _c(
-                                "router-link",
-                                {
-                                  attrs: {
-                                    to: {
-                                      name: "view-salary",
-                                      params: { id: salary.salary_month }
-                                    }
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "button",
-                                    { staticClass: "btn btn-light" },
-                                    [_vm._v("View Salary")]
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ])
-                      }),
-                      0
-                    )
-                  ]
-                )
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
+        )
+      }),
+      0
+    )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-light" }, [
-      _c("tr", [
-        _c("th", [_vm._v("Month Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Details")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Action")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -11,7 +11,7 @@
         <div class="card shadow-sm">
           <div class="card-header text-center h4 text-gray-900">
             <i class="fas fa-hand-holding-usd"></i>  Employee Salary Payment &nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link to="/employee" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></router-link>
+            <router-link to="/given-salary" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></router-link>
           </div>
           <div class="card-body p-0">
             <div class="row">
@@ -111,8 +111,12 @@
           let id = this.$route.params.id
           axios.post('/api/salary/paid/'+id,this.form)
           .then(res => {
-            this.$router.push({name:'given-salary'})
-            Notification.success("Salary payment successfully!")
+            if(res.data == "payment_already_exist"){
+               Notification.error("Salary already paid for this month!")
+            }else{
+              this.$router.push({name:'given-salary'})
+              Notification.success("Salary payment successfully!")
+            }
           })
           .catch(error => (this.errors = error.response.data.errors))
         },

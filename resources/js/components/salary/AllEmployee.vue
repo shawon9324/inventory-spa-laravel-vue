@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Employee</h1>
+            <h1 class="h3 mb-0 text-gray-800">Salary</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><router-link to="/home">Home</router-link></li>
-              <li class="breadcrumb-item active" aria-current="page">All Employee</li>
+              <li class="breadcrumb-item active" aria-current="page">Pay Salary</li>
             </ol>
           </div>
       <div class="col-xl-12 col-lg-12 col-md-12">
@@ -12,7 +12,7 @@
           <div class="card-header text-center h4 text-gray-900" >
             <input type="text" v-model="searchData" class="form-control-sm"  placeholder="Search here" style="float:left; color:gray;border:1px solid #a9a9a9 ;">
             <i class="fas fa-users"></i> All Employee({{filterSearch.length}})  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link to="/store-employee" class="btn btn-info" style="float:right"><i class="fas fa-user-plus"></i></router-link>
+            <router-link to="/salary" class="btn btn-info" style="float:right"><i class="fas fa-file-invoice-dollar"></i></router-link>
           </div>
           <div class="card-body p-0">
             <div class="row">
