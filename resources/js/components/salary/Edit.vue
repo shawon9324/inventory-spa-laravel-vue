@@ -4,15 +4,14 @@
             <h1 class="h3 mb-0 text-gray-800">Salary</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><router-link to="/home">Home</router-link></li>
-              <li class="breadcrumb-item active" aria-current="page">Update Salary Info</li>
+              <li class="breadcrumb-item active" aria-current="page">Update Salary Payment Info</li>
             </ol>
           </div>
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card shadow-sm">
           <div class="card-header text-center h4 text-gray-900">
-            <i class="fas fa-hand-holding-usd"></i>  Update Salary Info&nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link to="/salary" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></router-link>
-          </div>
+            <i class="fas fa-hand-holding-usd"></i>  Update Salary Payment Info&nbsp;&nbsp;&nbsp;&nbsp;
+            <button @click="back()" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></button>          </div>
           <div class="card-body p-0">
             <div class="row">
               <div class="col-lg-12">
@@ -111,11 +110,14 @@
           let id = this.$route.params.id
           axios.post('/api/salary/update/'+id,this.form)
           .then(res => {
-            this.$router.push({name:'salary'})
             Notification.success("Salary Info updated successfully!")
+            window.history.go(-2)
           })
           .catch(error => (this.errors = error.response.data.errors))
         },
+        back(){
+            window.history.back()
+        }
         
     },
 

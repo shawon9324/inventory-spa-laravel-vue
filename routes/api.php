@@ -24,7 +24,9 @@ Route::apiResource('/expense','Api\ExpenseController');
 
 
 Route::post('/salary/paid/{id}','Api\SalaryController@paid');
-Route::get('/salary','Api\SalaryController@allSalary');
-Route::get('/salary/view/{id}','Api\SalaryController@viewSalary');
+Route::get('/salary/session/{id}','Api\SalaryController@allSalary');
+Route::get('/salary/view/{year}/{month}','Api\SalaryController@viewSalary');
 Route::get('/salary/edit/{id}','Api\SalaryController@editSalary');
 Route::post('/salary/update/{id}','Api\SalaryController@updateSalary');
+
+Route::get('/salary','Api\SalaryController@allSession');

@@ -27,9 +27,10 @@ let edit_expense = require('./components/expense/Edit.vue').default;
 //Salary
 let given_salary = require('./components/salary/AllEmployee.vue').default;
 let pay_salary = require('./components/salary/Create.vue').default;
-let all_salary = require('./components/salary/Index.vue').default;
+let salary_year = require('./components/salary/SalarySession.vue').default;
 let view_salary = require('./components/salary/View.vue').default;
 let update_salary = require('./components/salary/Edit.vue').default;
+let salary_session = require('./components/salary/Index.vue').default;
 //home
 let Home = require('./components/Home.vue').default;
 
@@ -63,7 +64,8 @@ export const routes = [
     //Salary
     { path: '/given-salary', component: given_salary , name: 'given-salary' },
     { path: '/pay-salary/:id', component: pay_salary , name: 'pay-salary' },
-    { path: '/salary', component: all_salary , name: 'salary' },
-    { path: '/view-salary/:id', component: view_salary , name: 'view-salary' },
+    { path: '/view-salary/:id/:id2', component: view_salary , name: 'view-salary' },
     { path: '/update-salary/:id', component: update_salary , name: 'update-salary' },
+    { path: '/salary', component: salary_session , name: 'salary' },
+    { path: '/salary/:id', component: salary_year , name: 'salary-year' },
   ]

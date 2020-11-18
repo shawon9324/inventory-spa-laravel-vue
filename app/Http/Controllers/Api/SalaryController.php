@@ -26,12 +26,16 @@ class SalaryController extends Controller
             Salary::insert($data);
         }
     }
-    public function allSalary(){
-        $salary = Salary::select('salary_month')->groupBy('salary_month')->orderBy('salary_date', 'ASC')->get();
+    public function allSession(){
+        $session = Salary::select('salary_year')->groupBy('salary_year')->orderBy('salary_year','ASC')->get();
+        return response()->json($session);
+    }
+    public function allSalary($id){
+        $salary = Salary::select('salary_month')->where('salary_year',$id)->groupBy('salary_month')->orderBy('salary_date', 'ASC')->get();
         return response()->json($salary);
     }
-    public function viewSalary($id){
-        $salary = Salary::with('employee')->where('salary_month',$id)->get();
+    public function viewSalary($year,$month){
+        $salary = Salary::with('employee')->where(['salary_month'=>$month,'salary_year'=>$year])->get();
         return response()->json($salary);
     }
     public function editSalary($id){

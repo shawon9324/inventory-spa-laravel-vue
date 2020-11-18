@@ -4,15 +4,15 @@
             <h1 class="h3 mb-0 text-gray-800">Salary</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><router-link to="/home">Home</router-link></li>
-              <li class="breadcrumb-item active" aria-current="page">Employeer's Salary Details</li>
+              <li class="breadcrumb-item active" aria-current="page">Salary Payment Info</li>
             </ol>
           </div>
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card shadow-sm">
           <div class="card-header text-center h4 text-gray-900" >
             <input type="text" v-model="searchData" class="form-control-sm"  placeholder="Search here" style="float:right; color:gray;border:1px solid #a9a9a9 ;">
-            &nbsp;&nbsp;&nbsp;<i class="fas fa-users"></i>Employeer's Salary Details [{{this.$route.params.id}}]
-            <router-link to="/salary" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></router-link>
+            &nbsp;&nbsp;&nbsp;<i class="fas fa-dollar-sign"></i> Salary Payment Info ({{this.$route.params.id2}}/{{this.$route.params.id}})
+            <button @click="back()" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></button>
           </div>
           <div class="card-body p-0">
             <div class="row">
@@ -69,17 +69,22 @@
     computed:{
       filterSearch(){
         return this.salaries.filter(salary =>{
-          return (salary.amount.match(this.searchData))
+          return (salary.employee['name'].match(this.searchData))
         })
       }
     },
     methods:{
         viewSalary(){
-          let id = this.$route.params.id
-          axios.get('/api/salary/view/'+id)
+          let year= this.$route.params.id
+          let month = this.$route.params.id2
+          let url = year+'/'+month
+          axios.get('/api/salary/view/'+url)
           .then(({data}) => (this.salaries = data))
           .catch(error => (this.errors = error.response.data.errors))
         },
+        back(){
+            window.history.back()
+        }
      },
      created(){
             this.viewSalary();

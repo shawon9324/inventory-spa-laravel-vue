@@ -4,13 +4,13 @@
             <h1 class="h3 mb-0 text-gray-800">Salary</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><router-link to="/home">Home</router-link></li>
-              <li class="breadcrumb-item active" aria-current="page">Employee Salary Payment</li>
+              <li class="breadcrumb-item active" aria-current="page">Salary Payment</li>
             </ol>
           </div>
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card shadow-sm">
           <div class="card-header text-center h4 text-gray-900">
-            <i class="fas fa-hand-holding-usd"></i>  Employee Salary Payment &nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fas fa-hand-holding-usd"></i>  Salary Payment &nbsp;&nbsp;&nbsp;&nbsp;
             <router-link to="/given-salary" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></router-link>
           </div>
           <div class="card-body p-0">
