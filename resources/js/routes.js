@@ -38,6 +38,8 @@ let salary_session = require('./components/salary/Index.vue').default;
 //product stock
 let stock = require('./components/stock/Stock.vue').default;
 let edit_stock = require('./components/stock/Edit.vue').default;
+//POS [ POINT OF SELL]
+let pos = require('./components/pos/PointOfSell.vue').default;
 //home
 let Home = require('./components/Home.vue').default;
 
@@ -82,4 +84,6 @@ export const routes = [
     //PRODUCT STOCK
     { path: '/stock', component: stock , name: 'stock' },
     { path: '/edit-stock/:id', component: edit_stock , name: 'edit-stock' },
+    //POS [ POINT OF SELL]
+    { path: '/pos', component: pos , name: 'pos' },
   ]

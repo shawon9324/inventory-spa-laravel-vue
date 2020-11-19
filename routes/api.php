@@ -33,3 +33,11 @@ Route::post('/salary/update/{id}','Api\SalaryController@updateSalary');
 Route::get('/salary','Api\SalaryController@allSession');
 
 Route::post('/stock/update/{id}','Api\ProductController@updateStock');
+
+Route::get('/getting/product/{id}','Api\PosController@getProduct');
+
+Route::post('/addToCart/{id}','Api\CartController@addToCart');
+Route::get('/cart/product','Api\CartController@cartProduct');
+Route::post('/cart/remove/{id}','Api\CartController@removeCartItem');
+Route::post('/increment/{id}','Api\CartController@increment');
+Route::post('/decrement/{id}','Api\CartController@decrement');
