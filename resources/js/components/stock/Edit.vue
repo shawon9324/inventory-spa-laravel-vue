@@ -1,16 +1,16 @@
 <template>
   <div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Category</h1>
+            <h1 class="h3 mb-0 text-gray-800">Product Stock</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><router-link to="/home">Home</router-link></li>
-              <li class="breadcrumb-item active" aria-current="page">Edit Category Info</li>
+              <li class="breadcrumb-item active" aria-current="page">Update Product Stock</li>
             </ol>
           </div>
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card shadow-sm">
           <div class="card-header text-center h4 text-gray-900">
-            <i class="fas fa-edit"></i>  Edit Category Info &nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fas fa-trash-restore-alt"></i>  Update Product Stock &nbsp;&nbsp;&nbsp;&nbsp;
             <button @click="back()" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></button>
             <button @click="refresh()" class="btn btn-info" style="float:right"><i class="fas fa-redo-alt"></i></button>
           </div>
@@ -18,21 +18,26 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="login-form">
-                    <form class="category" id="edit-category" @submit.prevent="updateCategory" enctype="multipart/form-data">
+                    <form id="edit-product" class="product" @submit.prevent="updateStock" enctype="multipart/form-data">
                               <div class="form-row">
-                                <div class="form-group col-md-12">
-                                  <input type="text" class="form-control" id="category_name"  placeholder="Category Name" v-model="form.category_name">
-                                  <small class="text-danger" v-if="errors.category_name">{{ errors.category_name[0] }}</small>
+                                <div class="form-group col-md-6">
+                                  <label for="exampleFormControlSelect1">Product Name</label>
+                                  <input type="text" class="form-control" id="product_name" v-model="form.product_name" disabled>
+                                </div> 
+                                <div class="form-group col-md-6">
+                                  <label for="exampleFormControlSelect1">Product Code</label>
+                                  <input type="text" class="form-control" id="product_code" v-model="form.product_code" disabled>
                                 </div> 
                               </div>
                               <div class="form-row">
-                                <div class="form-group col-md-12">
-                                      <textarea class="form-control" id="details"  placeholder="Category Details" v-model="form.details" rows="4"></textarea>
-                                  <small class="text-danger" v-if="errors.details">{{ errors.details[0] }}</small>
+                                <div class="form-group col-md-6">
+                                  <label for="product_quantity">Product Quantity</label>
+                                  <input type="number" class="form-control" id="product_quantity" min="0" v-model="form.product_quantity">
+                                  <small class="text-danger" v-if="errors.product_quantity">{{ errors.product_quantity[0] }}</small>
                                 </div> 
                               </div>
                             <div class="form-group">
-                              <button type="submit" id="submit" class="btn btn-info btn-block">Update</button>
+                              <button type="submit" id="update" class="btn btn-info btn-block">Update</button>
                             </div>
                     </form>
                 </div>
@@ -56,24 +61,25 @@
     data(){
         return{
             form:{
-                category_name:'',
-                details:'',
+                    product_code:'',
+                    product_name:'',
+                    product_quantity:''
             },
             errors:{ },
         }
     },
     created() {
       let id = this.$route.params.id
-      axios.get('/api/category/'+id)
+      axios.get('/api/product/'+id)
       .then(({data}) =>(this.form = data))
     },
     methods:{
-        updateCategory(){
+        updateStock(){
           let id = this.$route.params.id
-          axios.patch('/api/category/'+id,this.form)
+          axios.post('/api/stock/update/'+id,this.form)
           .then(res => {
-            Notification.success("Category updated successfully!")
-            this.$router.push({name:'category'})
+            Notification.success("Product Stock updated successfully!")
+            this.$router.push({name:'stock'})
           })
           .catch(error => (this.errors = error.response.data.errors))
         },
@@ -84,17 +90,9 @@
             window.history.back()
         }
     },
-
   };
 </script>
 
 <style scoped>
-.zoom {
-  transition: 0.2s all ease-in-out; 
-  width: 60px;
-  height: 60px;
-}
-.zoom:hover { 
-  transform: scale(4);
-}
+
 </style>

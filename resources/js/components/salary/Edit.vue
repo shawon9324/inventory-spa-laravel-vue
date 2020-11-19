@@ -11,7 +11,9 @@
         <div class="card shadow-sm">
           <div class="card-header text-center h4 text-gray-900">
             <i class="fas fa-hand-holding-usd"></i>  Update Salary Payment Info&nbsp;&nbsp;&nbsp;&nbsp;
-            <button @click="back()" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></button>          </div>
+            <button @click="back()" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></button>
+            <button @click="refresh()" class="btn btn-info" style="float:right"><i class="fas fa-redo-alt"></i></button>
+          </div>
           <div class="card-body p-0">
             <div class="row">
               <div class="col-lg-12">
@@ -114,6 +116,9 @@
             window.history.go(-2)
           })
           .catch(error => (this.errors = error.response.data.errors))
+        },
+        refresh(){
+           location.reload();
         },
         back(){
             window.history.back()

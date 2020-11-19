@@ -11,7 +11,7 @@
         <div class="card shadow-sm">
           <div class="card-header text-center h4 text-gray-900">
             <i class="fas fa-user-edit"></i>  Edit Product Info &nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link to="/product" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></router-link>
+            <button @click="back()" class="btn btn-info" style="float:left"><i class="fas fa-arrow-alt-circle-left"></i></button>
             <button @click="refresh()" class="btn btn-info" style="float:right"><i class="fas fa-redo-alt"></i></button>
           </div>
           <div class="card-body p-0">
@@ -169,7 +169,10 @@
           .catch(error => (this.errors = error.response.data.errors))
         },
         refresh(){
-            document.getElementById("edit-product").reset();
+           location.reload();
+        },
+        back(){
+            window.history.back()
         }
     },
     

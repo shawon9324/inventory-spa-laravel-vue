@@ -28,9 +28,14 @@
             </router-link>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active">
-              <router-link to="/home" class="nav-link" href="index.html">
+              <router-link to="/home" class="nav-link" >
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></router-link>
+            </li>
+            <li class="nav-item active">
+              <router-link to="/pos" class="nav-link" >
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>POS</span></router-link>
             </li>
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
@@ -52,13 +57,26 @@
             <li class="nav-item">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
                 aria-controls="collapseForm">
-                <i class="fas fa-user-tie"></i><span> Supplier</span>
+                <i class="fas fa-user-tag"></i><span> Supplier</span>
               </a>
               <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Action</h6>
                   <router-link to="/store-supplier" class="collapse-item"><i class="fas fa-user-plus"></i> Add Supplier</router-link>
                   <router-link to="/supplier" class="collapse-item"><i class="fas fa-users"></i> All Supplier</router-link>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#customer" aria-expanded="true"
+                aria-controls="customer">
+                <i class="far fa-id-card"></i><span> Customer</span>
+              </a>
+              <div id="customer" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Action</h6>
+                  <router-link to="/store-customer" class="collapse-item"><i class="fas fa-user-plus"></i> Add Customer</router-link>
+                  <router-link to="/customer" class="collapse-item"><i class="fas fa-users"></i> All Customer</router-link>
                 </div>
               </div>
             </li>
@@ -114,16 +132,17 @@
                 </div>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="ui-colors.html">
-                <i class="fas fa-fw fa-palette"></i>
-                <span>Settings</span>
-              </a>
-            </li>
+            
+            
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
               Others
             </div>
+            <li class="nav-item">
+              <router-link to="/stock" class="nav-link collapsed">
+                <i class="fas fa-store"></i><span> Product Stock</span>
+              </router-link>
+            </li>
             <li class="nav-item">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true"
                 aria-controls="collapsePage">
@@ -140,12 +159,7 @@
                 </div>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>POS Statistics</span>
-              </a>
-            </li>
+            
             <hr class="sidebar-divider">
             <div class="version" >Powered by Laravel,Vue.JS,Rest API</div>
           </ul>

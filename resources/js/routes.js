@@ -12,6 +12,10 @@ let edit_employee = require('./components/employee/Edit.vue').default;
 let store_supplier = require('./components/supplier/Create.vue').default;
 let supplier = require('./components/supplier/Index.vue').default;
 let edit_supplier = require('./components/supplier/Edit.vue').default;
+//CUSTOMER
+let store_customer = require('./components/customer/Create.vue').default;
+let customer = require('./components/customer/Index.vue').default;
+let edit_customer = require('./components/customer/Edit.vue').default;
 //Category
 let store_category = require('./components/category/Create.vue').default;
 let category = require('./components/category/Index.vue').default;
@@ -31,6 +35,9 @@ let salary_year = require('./components/salary/SalarySession.vue').default;
 let view_salary = require('./components/salary/View.vue').default;
 let update_salary = require('./components/salary/Edit.vue').default;
 let salary_session = require('./components/salary/Index.vue').default;
+//product stock
+let stock = require('./components/stock/Stock.vue').default;
+let edit_stock = require('./components/stock/Edit.vue').default;
 //home
 let Home = require('./components/Home.vue').default;
 
@@ -49,6 +56,10 @@ export const routes = [
     { path: '/store-supplier', component: store_supplier , name: 'store-supplier' },
     { path: '/supplier', component: supplier , name: 'supplier' },
     { path: '/edit-supplier/:id', component: edit_supplier , name: 'edit-supplier' },
+    //Customer
+    { path: '/store-customer', component: store_customer , name: 'store-customer' },
+    { path: '/customer', component: customer , name: 'customer' },
+    { path: '/edit-customer/:id', component: edit_customer , name: 'edit-customer' },
     //Category
     { path: '/store-category', component: store_category , name: 'store-category' },
     { path: '/category', component: category , name: 'category' },
@@ -68,4 +79,7 @@ export const routes = [
     { path: '/update-salary/:id', component: update_salary , name: 'update-salary' },
     { path: '/salary', component: salary_session , name: 'salary' },
     { path: '/salary/:id', component: salary_year , name: 'salary-year' },
+    //PRODUCT STOCK
+    { path: '/stock', component: stock , name: 'stock' },
+    { path: '/edit-stock/:id', component: edit_stock , name: 'edit-stock' },
   ]

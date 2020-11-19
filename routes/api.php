@@ -18,6 +18,7 @@ Route::group([
 
 Route::apiResource('/employee','Api\EmployeeController');
 Route::apiResource('/supplier','Api\SupplierController');
+Route::apiResource('/customer','Api\CustomerController');
 Route::apiResource('/category','Api\CategoryController');
 Route::apiResource('/product','Api\ProductController');
 Route::apiResource('/expense','Api\ExpenseController');
@@ -30,3 +31,5 @@ Route::get('/salary/edit/{id}','Api\SalaryController@editSalary');
 Route::post('/salary/update/{id}','Api\SalaryController@updateSalary');
 
 Route::get('/salary','Api\SalaryController@allSession');
+
+Route::post('/stock/update/{id}','Api\ProductController@updateStock');
