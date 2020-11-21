@@ -42,9 +42,6 @@
                             <router-link :to="{name:'edit-employee',params:{id:employee.id}}" ><button href="#" class="btn btn-success"><i class="fas fa-user-edit"></i></button></router-link>
                             <button @click="deleteEmployee(employee.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                         </td>
-                        <!-- <td>Nasi Padang</td> -->
-                        <!-- <td><span class="badge badge-success">Delivered</span></td> -->
-                        <!-- <td><a href="#" class="btn btn-sm btn-primary">Action</a></td> -->
                       </tr>
                     </tbody>
                   </table>
@@ -117,8 +114,5 @@
   };
 </script>
 <style>
-#employee-photo{
-  height: 60px;
-  width: 60px;
-}
+
 </style>

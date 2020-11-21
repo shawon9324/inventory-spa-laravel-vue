@@ -132,12 +132,30 @@
                 </div>
               </div>
             </li>
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#orders" aria-expanded="true"
+                aria-controls="collapseForm">
+                <i class="far fa-money-bill-alt"></i><span>Orders</span>
+              </a>
+              <div id="orders" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Action</h6>
+                  <router-link to="/order" class="collapse-item" ><i class="fas fa-hand-holding-usd"></i>  Today's Order</router-link>
+                  <router-link to="/order" class="collapse-item" ><i class="fas fa-money-bill-alt"></i> Search Order</router-link>
+                </div>
+              </div>
+            </li>
             
             
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
               Others
             </div>
+            <li class="nav-item">
+              <router-link to="/stock" class="nav-link collapsed">
+                <i class="fas fa-store"></i><span> Product Stock</span>
+              </router-link>
+            </li>
             <li class="nav-item">
               <router-link to="/stock" class="nav-link collapsed">
                 <i class="fas fa-store"></i><span> Product Stock</span>

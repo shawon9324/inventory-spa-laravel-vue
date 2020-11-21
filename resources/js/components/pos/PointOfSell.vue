@@ -357,7 +357,7 @@
           }
           axios.post('/api/orderdone',data)
           .then(() => {
-            Notification.success("Order done Successfully")
+            Notification.success("Order Successfully Done!")
             this.$router.push({name:'home'})
           })
         },

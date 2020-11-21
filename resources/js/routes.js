@@ -40,6 +40,9 @@ let stock = require('./components/stock/Stock.vue').default;
 let edit_stock = require('./components/stock/Edit.vue').default;
 //POS [ POINT OF SELL]
 let pos = require('./components/pos/PointOfSell.vue').default;
+//ORDER
+let order = require('./components/order/Order.vue').default;
+let view_order = require('./components/order/ViewOrder.vue').default;
 //home
 let Home = require('./components/Home.vue').default;
 
@@ -86,4 +89,8 @@ export const routes = [
     { path: '/edit-stock/:id', component: edit_stock , name: 'edit-stock' },
     //POS [ POINT OF SELL]
     { path: '/pos', component: pos , name: 'pos' },
+    // Order
+    { path: '/order', component: order , name: 'order' },
+    { path: '/view-order/:id', component: view_order , name: 'view-order' },
+
   ]
