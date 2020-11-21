@@ -17,7 +17,7 @@
                   <div class="row align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Todays Income</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ todays_income }}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ todays.income }}</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
                         <span>Since last month</span>
@@ -37,7 +37,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Todays Sales </div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ todays_sell }}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ todays.sell }}</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
                         <span>Since last years</span>
@@ -57,7 +57,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Todays Due</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{todays_due}}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{todays.due}}</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
                         <span>Since yesterday</span>
@@ -77,7 +77,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Todays Expense</div>
-                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">$ {{todays_expense}}</div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">$ {{todays.expense}}</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
                         <span>Since last month</span>
@@ -114,7 +114,7 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr v-for="product in products" :key="product.id">
+                                <tr v-for="product in todays.products" :key="product.id">
                                   <td><img :src="product.product_image" id="product-photo"></td>
                                   <td>{{ product.product_name }}</td>
                                   <td>{{ product.product_code }}</td>
@@ -146,44 +146,18 @@ export default {
     },
     data() {
         return {
-            todays_sell:'',
-            todays_income:'',
-            todays_due:'',
-            todays_expense:'',
+           
             products:'',
+            todays:''
         }
     },
     mounted(){
-      this.todaySell()
-      this.todayIncome()
-      this.todayDue()
-      this.todayExpense()
-      this.stockOut()
+      this.todayInfo()
     },   
     methods: {
-        todaySell(){
-         axios.get('/api/today/sell/')
-        .then(({data}) => (this.todays_sell = data))
-        .catch()
-      },
-        todayIncome(){
-         axios.get('/api/today/income/')
-        .then(({data}) => (this.todays_income = data))
-        .catch()
-      },
-        todayDue(){
-         axios.get('/api/today/due/')
-        .then(({data}) => (this.todays_due = data))
-        .catch()
-      },
-        todayExpense(){
-         axios.get('/api/today/expense/')
-        .then(({data}) => (this.todays_expense = data))
-        .catch()
-      },
-        stockOut(){
-         axios.get('/api/stockout/')
-        .then(({data}) => (this.products = data))
+        todayInfo(){
+         axios.get('/api/today/info')
+        .then(({data}) => (this.todays = data))
         .catch()
       }
     },

@@ -2057,59 +2057,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      todays_sell: '',
-      todays_income: '',
-      todays_due: '',
-      todays_expense: '',
-      products: ''
+      products: '',
+      todays: ''
     };
   },
   mounted: function mounted() {
-    this.todaySell();
-    this.todayIncome();
-    this.todayDue();
-    this.todayExpense();
-    this.stockOut();
+    this.todayInfo();
   },
   methods: {
-    todaySell: function todaySell() {
+    todayInfo: function todayInfo() {
       var _this = this;
 
-      axios.get('/api/today/sell/').then(function (_ref) {
+      axios.get('/api/today/info').then(function (_ref) {
         var data = _ref.data;
-        return _this.todays_sell = data;
-      })["catch"]();
-    },
-    todayIncome: function todayIncome() {
-      var _this2 = this;
-
-      axios.get('/api/today/income/').then(function (_ref2) {
-        var data = _ref2.data;
-        return _this2.todays_income = data;
-      })["catch"]();
-    },
-    todayDue: function todayDue() {
-      var _this3 = this;
-
-      axios.get('/api/today/due/').then(function (_ref3) {
-        var data = _ref3.data;
-        return _this3.todays_due = data;
-      })["catch"]();
-    },
-    todayExpense: function todayExpense() {
-      var _this4 = this;
-
-      axios.get('/api/today/expense/').then(function (_ref4) {
-        var data = _ref4.data;
-        return _this4.todays_expense = data;
-      })["catch"]();
-    },
-    stockOut: function stockOut() {
-      var _this5 = this;
-
-      axios.get('/api/stockout/').then(function (_ref5) {
-        var data = _ref5.data;
-        return _this5.products = data;
+        return _this.todays = data;
       })["catch"]();
     }
   }
@@ -50437,7 +50398,7 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "h5 mb-0 font-weight-bold text-gray-800" },
-                  [_vm._v("$ " + _vm._s(_vm.todays_income))]
+                  [_vm._v("$ " + _vm._s(_vm.todays.income))]
                 ),
                 _vm._v(" "),
                 _vm._m(1)
@@ -50465,7 +50426,7 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "h5 mb-0 font-weight-bold text-gray-800" },
-                  [_vm._v("$ " + _vm._s(_vm.todays_sell))]
+                  [_vm._v("$ " + _vm._s(_vm.todays.sell))]
                 ),
                 _vm._v(" "),
                 _vm._m(3)
@@ -50493,7 +50454,7 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "h5 mb-0 font-weight-bold text-gray-800" },
-                  [_vm._v("$ " + _vm._s(_vm.todays_due))]
+                  [_vm._v("$ " + _vm._s(_vm.todays.due))]
                 ),
                 _vm._v(" "),
                 _vm._m(5)
@@ -50523,7 +50484,7 @@ var render = function() {
                   {
                     staticClass: "h5 mb-0 mr-3 font-weight-bold text-gray-800"
                   },
-                  [_vm._v("$ " + _vm._s(_vm.todays_expense))]
+                  [_vm._v("$ " + _vm._s(_vm.todays.expense))]
                 ),
                 _vm._v(" "),
                 _vm._m(7)
@@ -50567,7 +50528,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.products, function(product) {
+                  _vm._l(_vm.todays.products, function(product) {
                     return _c("tr", { key: product.id }, [
                       _c("td", [
                         _c("img", {

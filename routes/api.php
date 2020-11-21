@@ -53,8 +53,5 @@ Route::get('/order/orderdetails/{id}','Api\OrderController@allOrderDetails');
 Route::post('/search/order','Api\OrderController@searchOrder');
 
 //DASHBOARD FUNCTIONALITY
-Route::get('/today/sell','Api\DashboardController@todaySell');
-Route::get('/today/income','Api\DashboardController@todayIncome');
-Route::get('/today/due','Api\DashboardController@todayIncome');
-Route::get('/today/expense','Api\DashboardController@todayExpense');
 Route::get('/stockout','Api\DashboardController@stockOut');
+Route::get('/today/info','Api\DashboardController@todayInfo');

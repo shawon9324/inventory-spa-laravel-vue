@@ -6,33 +6,24 @@ use App\Http\Controllers\Controller;
 use DB;
 class DashboardController extends Controller
 {
-    public function todaySell(){
+    public function todayInfo(){
         $date = date('d/m/Y');
-        $todays_sell_amount = DB::table('orders')
+        $todays_sell =   DB::table('orders')
                                 ->where('order_date',$date)
                                 ->sum('total');
-        return response()->json($todays_sell_amount);
-    }
-    public function todayIncome(){
-        $date = date('d/m/Y');
-        $todays_income_amount = DB::table('orders')
+        $todays_income = DB::table('orders')
                                 ->where('order_date',$date)
-                                ->sum('pay');
-        return response()->json($todays_income_amount);
-    }
-    public function todayDue(){
-        $date = date('d/m/Y');
-        $todays_due_amount = DB::table('orders')
+                                ->sum('pay');        
+        $todays_due =    DB::table('orders')
                                 ->where('order_date',$date)
                                 ->sum('due');
-        return response()->json($todays_due_amount);
-    }
-    public function todayExpense(){
-        $date = date('d/m/Y');
-        $todays_expense_amount = DB::table('expenses')
+        $todays_expense = DB::table('expenses')
                                 ->where('expense_date',$date)
                                 ->sum('amount');
-        return response()->json($todays_expense_amount);
+        $products = DB::table('products')
+                        ->where('product_quantity','<','1')
+                         ->get();
+        return response()->json(['sell'=>$todays_sell,'income'=>$todays_income,'due'=>$todays_due,'expense'=>$todays_expense,'products'=>$products]);
     }
     public function stockOut(){
         $date = date('d/m/Y');
