@@ -397,9 +397,7 @@
     // $("#container-wrapper").addClass("custom");
   }
   </script>
-  <script src="{{ asset('backend/js/ruang-admin.min.js') }}"></script>
-  <script src="{{ asset('backend/vendor/chart.js/Chart.min.js') }}"></script>
-  <script src="{{ asset('backend/js/demo/chart-area-demo.js') }}"></script>  
+  <script src="{{ asset('backend/js/ruang-admin.js') }}"></script>
 
 
 </body>

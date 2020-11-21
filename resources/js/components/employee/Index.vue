@@ -22,22 +22,22 @@
                     <thead class="thead-light">
                       <tr>
                         <th>ID</th>
+                        <th>Photo</th>
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Salary</th>
                         <th>Joining Date</th>
-                        <th>Photo</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="employee in filterSearch" :key="employee.id">
                         <td>#{{ employee.id}}</td>
+                        <td><img :src="employee.photo" id="employee-photo"></td>
                         <td>{{ employee.name }}</td>
                         <td>{{ employee.phone }}</td>
                         <td>{{ employee.salary }}</td>
                         <td>{{ employee.joining_date }}</td>
-                        <td><img :src="employee.photo" id="employee-photo"></td>
                         <td>
                             <router-link :to="{name:'edit-employee',params:{id:employee.id}}" ><button href="#" class="btn btn-success"><i class="fas fa-user-edit"></i></button></router-link>
                             <button @click="deleteEmployee(employee.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button>

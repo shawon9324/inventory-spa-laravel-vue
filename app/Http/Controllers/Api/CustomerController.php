@@ -18,7 +18,7 @@ class CustomerController extends Controller
         $validateData = $request->validate([
             'name' => 'required',
             'gender'=> 'required ',
-            'email'=>'required | unique:customers',
+            'email'=>'unique:customers',
             'phone'=>'required ',
         ]);
         $data = $request->all();

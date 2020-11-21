@@ -21,25 +21,25 @@
                   <table class="table align-items-center table-flush">
                     <thead class="thead-light">
                       <tr>
+                        <th>Photo</th>
                         <th>Product Name</th>
                         <th>Category</th>
                         <th>Supplier</th>
                         <th>Buying Price</th>
                         <th>Selling Price</th>
                         <th>Quantity</th>
-                        <th>Photo</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="product in filterSearch" :key="product.id">
+                        <td><img :src="product.product_image" id="product-photo"></td>
                         <td>{{ product.product_name }}</td>
                         <td>{{ product.category['category_name'] }}</td>
                         <td>{{ product.supplier['name'] }}</td>
                         <td><span class="badge badge-light">{{ product.buying_price }}</span></td>
                         <td><span class="badge badge-light">{{ product.selling_price }}</span></td>
                         <td><span class="badge badge-light">{{ product.product_quantity }}</span></td>
-                        <td><img :src="product.product_image" id="product-photo"></td>
                         <td>
                             <router-link :to="{name:'edit-product',params:{id:product.id}}" ><button class="btn btn-success"><i class="fas fa-user-edit"></i></button></router-link>
                             <button @click="deleteProduct(product.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button>

@@ -22,27 +22,24 @@
                     <thead class="thead-light">
                       <tr>
                         <th>ID No</th>
+                        <th>Photo</th>
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Shop Name</th>
-                        <th>Photo</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="supplier in filterSearch" :key="supplier.id">
                         <td>{{ supplier.id }}</td>
+                        <td><img :src="supplier.photo" id="supplier-photo"></td>
                         <td>{{ supplier.name }}</td>
                         <td>{{ supplier.phone }}</td>
                         <td>{{ supplier.shop_name }}</td>
-                        <td><img :src="supplier.photo" id="supplier-photo"></td>
                         <td>
                             <router-link :to="{name:'edit-supplier',params:{id:supplier.id}}" ><button href="#" class="btn btn-success"><i class="fas fa-user-edit"></i></button></router-link>
                             <button @click="deleteSupplier(supplier.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                         </td>
-                        <!-- <td>Nasi Padang</td> -->
-                        <!-- <td><span class="badge badge-success">Delivered</span></td> -->
-                        <!-- <td><a href="#" class="btn btn-sm btn-primary">Action</a></td> -->
                       </tr>
                     </tbody>
                   </table>
