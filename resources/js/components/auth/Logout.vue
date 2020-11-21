@@ -9,6 +9,7 @@
 <script type="text/javascript">
 export default{
     created(){
+        $('#LogoutModal').modal('toggle');
         localStorage.removeItem('token')
         localStorage.removeItem('user')
         Toast.fire({

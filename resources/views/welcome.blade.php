@@ -141,7 +141,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Action</h6>
                   <router-link to="/order" class="collapse-item" ><i class="fas fa-hand-holding-usd"></i>  Today's Order</router-link>
-                  <router-link to="/order" class="collapse-item" ><i class="fas fa-money-bill-alt"></i> Search Order</router-link>
+                  <router-link to="/search/order" class="collapse-item" ><i class="fas fa-money-bill-alt"></i> Search Order</router-link>
                 </div>
               </div>
             </li>
@@ -363,15 +363,35 @@
                       Activity Log
                     </a>
                     <div class="dropdown-divider"></div>
-                    <router-link to="/logout" class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout</router-link>
+                    <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#LogoutModal">
+                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                      Logout
                     </a>
                   </div>
                 </li>
               </ul>
             </nav>
             <!-- Topbar -->
-
+              <!-- Modal -->
+              <div class="modal fade" id="LogoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Warning!</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to logout?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <router-link to="/logout"><button type="button" class="btn btn-primary">Logout</button></router-link>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <!-- Container Fluid-->
             <div class="container-fluid" id="container-wrapper">
                 <!-- route outlet -->

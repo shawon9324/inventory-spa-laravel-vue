@@ -1,20 +1,36 @@
 <template>
-  <div>
+<div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Order</h1>
+            <h1 class="h3 mb-0 text-gray-800">Search Order</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><router-link to="/home">Home</router-link></li>
-              <li class="breadcrumb-item active" aria-current="page">Today's Order</li>
+              <li class="breadcrumb-item active" aria-current="page">Search Order</li>
             </ol>
           </div>
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card shadow-sm">
-          <div class="card-header text-center h4 text-gray-900" >
-            <input type="text" v-model="searchData" class="form-control-sm"  placeholder="Search here" style="float:left; color:gray;border:1px solid #a9a9a9 ;">
-            <i class="fas fa-hand-holding-usd"></i> All Today's Order &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link to="/search/order" class="btn btn-info" style="float:right"><i class="fas fa-search"></i></router-link>
+          <div class="card-header text-center h4 text-gray-900">
+            <i class="fas fa-search"></i> Search Order
+            <router-link to="/order" class="btn btn-info" style="float:right"><i class="far fa-eye"></i></router-link>
           </div>
           <div class="card-body p-0">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="login-form">
+                    <form class="category" @submit.prevent="searchOrder">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="">Search by Date</label>
+                                <input type="date" class="form-control" id="serach" v-model="date">
+                            </div> 
+                         </div>
+                        <div class="form-group">
+                            <button type="submit" id="submit" class="btn btn-info btn-block"><i class="fas fa-search"></i> Search</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-lg-12">
                   <div class="table-responsive">
@@ -23,17 +39,22 @@
                       <tr>
                         <th>Order ID</th>
                         <th>Customer Name</th>
-                        <th>Total Amount</th>
+                        <th>Subtotal</th>
+                        <th>Vat</th>
+                        <th>Total</th>
                         <th>Paid</th>
                         <th>Due</th>
-                        <th>PaidBy</th>
+                        <th>Payment Method</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="order in filterSearch" :key="order.id">
+                        
+                      <tr v-for="order in orders" :key="order.id">
                         <td>{{ order.id }}</td>
                         <td>{{ order.name }}</td>
+                        <td>{{ order.sub_total }}</td>
+                        <td>{{ order.vat }}</td>
                         <td>{{ order.total }}</td>
                         <td>{{ order.pay }}</td>
                         <td v-if="order.due == 0"><span class="badge badge-success">No Due</span></td>
@@ -52,7 +73,9 @@
         </div>
       </div>
 </div>
+
 </template>
+
 <script type="text/javascript">
   export default {
     created() {
@@ -64,29 +87,21 @@
     },
     data(){
         return{
-            orders:[],
-            searchData:''
+            date:'',
+            orders:{},
         }
     },
-    computed:{
-      filterSearch(){
-        return this.orders.filter(order =>{
-          return (order.name.match(this.searchData))
-        })
-      }
-    },
     methods:{
-        allOrder(){
-          axios.get('/api/orders/')
+        searchOrder(){
+          var data = {date:this.date}
+          axios.post('/api/search/order',data)
           .then(({data}) => (this.orders = data))
-          .catch()
-        },
+        }
     },
-    created(){
-          this.allOrder();
-    }
+
   };
 </script>
-<style>
+
+<style scoped>
 
 </style>
