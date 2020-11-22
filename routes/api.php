@@ -22,6 +22,7 @@ Route::apiResource('/customer','Api\CustomerController');
 Route::apiResource('/category','Api\CategoryController');
 Route::apiResource('/product','Api\ProductController');
 Route::apiResource('/expense','Api\ExpenseController');
+Route::apiResource('/settings','Api\SettingsController');
 
 
 Route::post('/salary/paid/{id}','Api\SalaryController@paid');
@@ -55,3 +56,8 @@ Route::post('/search/order','Api\OrderController@searchOrder');
 //DASHBOARD FUNCTIONALITY
 Route::get('/stockout','Api\DashboardController@stockOut');
 Route::get('/today/info','Api\DashboardController@todayInfo');
+
+//TOP
+Route::get('/topsell','Api\DashboardController@topSellProduct');
+
+//settings

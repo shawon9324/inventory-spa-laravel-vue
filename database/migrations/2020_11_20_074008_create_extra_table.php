@@ -17,7 +17,7 @@ class CreateExtraTable extends Migration
             $table->id();
             $table->integer('vat')->nullable(0);
             $table->string('logo');
-            $table->string('favicon')->nullable();
+            $table->string('store_name')->nullable();
             $table->string('phone');
             $table->string('email');
             $table->string('address');

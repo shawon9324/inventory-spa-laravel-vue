@@ -12,6 +12,7 @@ let edit_employee = require('./components/employee/Edit.vue').default;
 let store_supplier = require('./components/supplier/Create.vue').default;
 let supplier = require('./components/supplier/Index.vue').default;
 let edit_supplier = require('./components/supplier/Edit.vue').default;
+
 //CUSTOMER
 let store_customer = require('./components/customer/Create.vue').default;
 let customer = require('./components/customer/Index.vue').default;
@@ -45,6 +46,10 @@ let order = require('./components/order/Order.vue').default;
 let view_order = require('./components/order/ViewOrder.vue').default;
 //Search Order
 let search_order = require('./components/order/SearchOrder.vue').default;
+//SETTINGS
+let store_setting = require('./components/settings/Create.vue').default;
+let setting = require('./components/settings/Settings.vue').default;
+let edit_setting = require('./components/settings/Edit.vue').default;
 
 //home
 let Home = require('./components/Home.vue').default;
@@ -97,4 +102,8 @@ export const routes = [
     { path: '/view-order/:id', component: view_order , name: 'view-order' },
     //Search Order
     { path: '/search/order', component: search_order , name: 'search-order' },
+    //Settings
+    { path: '/store-setting', component: store_setting , name: 'store-setting' },
+    { path: '/setting', component: setting , name: 'setting' },
+    { path: '/edit-setting/:id', component: edit_setting , name: 'edit-setting' },
   ]

@@ -9,7 +9,7 @@
           </div>
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card shadow-sm">
-          <div class="card-header text-center h4 text-gray-900">
+          <div class="card-header text-center h4 text-gray-900 justify-content-between align-items-center">
             <i class="fas fa-plus-circle"></i> Add Category
             <router-link to="/category" class="btn btn-info" style="float:right"><i class="far fa-eye"></i></router-link>
           </div>

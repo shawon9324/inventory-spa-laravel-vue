@@ -18,4 +18,9 @@ class Product extends Model
     {
       return $this->belongsTo('App\Model\Supplier', 'supplier_id')->select('name','id');
     }
+    public function order()
+    {
+      return $this->hasMany('App\Model\Orderdetail', 'product_id')->select('product_id','pro_qty');
+    }
+
 }

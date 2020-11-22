@@ -39,13 +39,31 @@ class OrderController extends Controller
     }
     public function searchOrder(Request $request){
         $order_date = $request->date;
-        $new_date = new DateTime($order_date);
-        $date_format = $new_date->format('d/m/Y');
-        $order = DB::table('orders')
-                        ->join('customers','orders.customer_id','customers.id')
-                        ->where('orders.order_date',$date_format)
-                        ->select('customers.name','customers.phone','orders.*')
-                        ->get();
-        return response()->json($order);
+        $order_month = $request->month;
+        $order_year = $request->year;
+        if($order_month){
+            $order = DB::table('orders')
+            ->join('customers','orders.customer_id','customers.id')
+            ->where('orders.order_month',$order_month)
+            ->select('customers.name','customers.phone','orders.*')
+            ->get();
+            return response()->json($order);
+        }else if($order_date){
+            $new_date = new DateTime($order_date);
+            $date_format = $new_date->format('d/m/Y');
+            $order = DB::table('orders')
+                            ->join('customers','orders.customer_id','customers.id')
+                            ->where('orders.order_date',$date_format)
+                            ->select('customers.name','customers.phone','orders.*')
+                            ->get();
+            return response()->json($order);
+        }else if($order_year){
+            $order = DB::table('orders')
+            ->join('customers','orders.customer_id','customers.id')
+            ->where('orders.order_year',$order_year)
+            ->select('customers.name','customers.phone','orders.*')
+            ->get();
+            return response()->json($order);
+        }
     }
 }

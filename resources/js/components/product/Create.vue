@@ -77,7 +77,6 @@
                                       <label for="selling_price">Product Image</label>
                                       <div class="custom-file" >
                                         <input type="file" class="custom-file-input"  id="customFile" @change="onFileSelected" accept="image/png,image/jpeg,image/jpg">
-                                        <!-- <small class="text-danger" v-if="errors.photo">{{ errors.photo[0] }}</small> -->
                                         <label data-v-afc914bc="" class="custom-file-label" for="customFile">Choose file</label>
                                       </div>
                                    </div>

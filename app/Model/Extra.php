@@ -8,6 +8,6 @@ class Extra extends Model
 {
     protected $table = 'extra';
     protected $fillable =[
-        'vat','logo','favicon','phone', 'email','address'
+        'vat','logo','store_name','phone', 'email','address'
     ];
 }
