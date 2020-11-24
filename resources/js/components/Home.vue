@@ -111,7 +111,7 @@
                 <div class="card shadow-sm">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center ">
                         <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-hourglass-start"></i> Out of Stock Product </h6>
-                       <div class="text-xs font-weight-bold badge badge-info">Total out of stock: {{this.products.length}}</div>
+                       <!-- <div class="text-xs font-weight-bold badge badge-info">Total out of stock: {{this.todays.products.length}}</div> -->
                     </div>
                           <div class="table-responsive">
                             <table class="table align-items-center table-flush">

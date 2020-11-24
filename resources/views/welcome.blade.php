@@ -10,8 +10,8 @@
   <link href="{{ asset('backend/img/logo.png') }}" rel="icon">
   <title>Vue Inventory</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('backend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <link href="{{ asset('backend/css/ruang-admin.css') }}" rel="stylesheet">
 </head>
 
@@ -207,10 +207,10 @@
                       <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                       Profile
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <router-link to="/setting" class="dropdown-item" >
                       <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                       Settings
-                    </a>
+                    </router-link>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#LogoutModal">
                       <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

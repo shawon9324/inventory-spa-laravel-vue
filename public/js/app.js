@@ -51242,22 +51242,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-8 mb-4" }, [
         _c("div", { staticClass: "card shadow-sm" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "card-header py-3 d-flex justify-content-between align-items-center "
-            },
-            [
-              _vm._m(6),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "text-xs font-weight-bold badge badge-info" },
-                [_vm._v("Total out of stock: " + _vm._s(this.products.length))]
-              )
-            ]
-          ),
+          _vm._m(6),
           _vm._v(" "),
           _c("div", { staticClass: "table-responsive" }, [
             _c(
@@ -51396,10 +51381,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
-      _c("i", { staticClass: "fas fa-hourglass-start" }),
-      _vm._v(" Out of Stock Product ")
-    ])
+    return _c(
+      "div",
+      {
+        staticClass:
+          "card-header py-3 d-flex justify-content-between align-items-center "
+      },
+      [
+        _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
+          _c("i", { staticClass: "fas fa-hourglass-start" }),
+          _vm._v(" Out of Stock Product ")
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
